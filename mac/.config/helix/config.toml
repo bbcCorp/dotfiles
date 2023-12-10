@@ -1,0 +1,4 @@
+# Default helix configs for BBC's Helix Editor
+
+#theme = "dracula_at_night"
+theme = "ferra"
