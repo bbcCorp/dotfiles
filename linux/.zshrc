@@ -103,15 +103,19 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+alias c="clear"
 alias a="source venv/bin/activate"
 alias act="source .venv/bin/activate"
+
 alias e="xdg-open"
 alias k="kubectl"
-alias vim=io.neovim.nvim
+alias vim="hx"
 alias ls="colorls"
 alias startdev="sh ~/scripts/start-dev-env.sh"
 alias stopdev="sh ~/scripts/stop-dev-env.sh"
 alias cat="batcat"
+alias bup="$ sudo apt update && sudo apt -y upgrade"
 
 # eval "$(starship init zsh)"
 
