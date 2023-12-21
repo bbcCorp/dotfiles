@@ -108,6 +108,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias e="open"
 alias k="kubectl"
+alias kk="kubectl -n eventregistration"
 alias bup="brew update && brew upgrade"
 alias act="source .venv/bin/activate"
 alias vim="hx"
@@ -120,6 +121,10 @@ alias msus="multipass suspend  --all"
 alias mstop="multipass stop  --all"
 
 DEFAULT_USER=whoami
+
+# Setup the kubernetes cluster address 
+export KSERVER="192.168.1.29"
+export KUBECONFIG=~/.kube/config
 
 # Setup NVM installed using homebrew
 export NVM_DIR="$HOME/.nvm"
