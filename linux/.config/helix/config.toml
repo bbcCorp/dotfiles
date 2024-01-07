@@ -1,0 +1,17 @@
+# Default helix configs for BBC's Helix Editor
+
+theme = "ferra"
+#theme = "dracula_at_night"
+
+[editor]
+true-color = true
+cursorline = true
+rulers = [80,120]
+
+[editor.statusline]
+left = ["mode", "spinner", "version-control", "file-name"]
+
+[editor.file-picker]
+hidden = true
+git-ignore = true
+parents = true
