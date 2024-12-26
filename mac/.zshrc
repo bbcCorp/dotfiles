@@ -1,13 +1,17 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=/opt/homebrew/bin:$PATH
-export PATH=/opt/homebrew/sbin:$PATH
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
+# Enable docker path
+export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
+
+# Enable Homebrew 
+export PATH="/opt/homebrew/bin:$PATH"
+
+# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
+# load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
@@ -77,7 +81,7 @@ ZSH_THEME="af-magic"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(dotenv kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -89,60 +93,72 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vi'
+else
+  export EDITOR='hx'
+fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# export ARCHFLAGS="-arch $(uname -m)"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias e="open"
-alias k="kubectl"
-alias kk="kubectl -n eventregistration"
-alias bup="brew update && brew upgrade"
-alias act="source .venv/bin/activate"
-alias vim="hx"
-# alias ls="colorls"
-alias cat="bat"
 
-#multipass related commands
-alias mstart="multipass start  --all"
-alias msus="multipass suspend  --all"
-alias mstop="multipass stop  --all"
+# Use Oh My Posh
+if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+  eval "$(oh-my-posh init zsh)"
+fi
 
-DEFAULT_USER=whoami
-
-# Setup the kubernetes cluster address 
-export KSERVER="192.168.1.29"
-export KUBECONFIG=~/.kube/config
-
-# Setup NVM installed using homebrew
+# Setup Node virtual manager
 export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/bbc/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/bbc/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/bbc/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/bbc/miniconda3/bin:$PATH"
+        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Setup the kubernetes cluster address 
+export KSERVER="192.168.64.2"
+export KUBECONFIG=~/.kube/config
+
+# Setup alias
+alias e="open"
+alias k="kubectl"
+alias kk="kubectl -n eventregistration"
+alias act="source .venv/bin/activate"
+alias vim="hx"
+alias cat="bat"
+alias bup="sh ~/scripts/update_mac.sh"
+ 
+#multipass related commands
+alias m="multipass"
+alias mstart="multipass start  --all"
+alias mpause="multipass suspend  --all"
+alias mstop="multipass stop  --all"
+
+# sublime commands
+alias gitk="smerge ."
+alias gedit="subl"
