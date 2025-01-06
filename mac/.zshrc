@@ -6,6 +6,7 @@ export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
 
 # Enable Homebrew 
 export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/opt/llvm/bin/:$PATH"
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -162,3 +163,12 @@ alias mstop="multipass stop  --all"
 # sublime commands
 alias gitk="smerge ."
 alias gedit="subl"
+
+function config-open(){
+  hx ~/.zshrc
+}
+
+function config-reload(){
+  source ~/.zshrc
+  echo "Reloaded ~/.zshrc"
+}
