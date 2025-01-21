@@ -123,9 +123,8 @@ export JAVA_HOME="/usr/lib/jvm/default-java"
 export SPARK_HOME="~/software/spark-3.3.1-bin-hadoop3"
 
 export PATH=$PATH:/usr/local/go/bin
-
-
 export PATH=$PATH:~/.local/share/flatpak/exports/bin
+export PATH=$PATH:~/.local/bin
 
 
 export NVM_DIR="$HOME/.nvm"
