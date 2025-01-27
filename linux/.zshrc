@@ -105,19 +105,21 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias c="clear"
-alias a="source venv/bin/activate"
+alias a="source .venv/bin/activate"
 alias act="source .venv/bin/activate"
 
 alias e="xdg-open"
 alias k="kubectl"
 alias vim="hx"
-alias ls="colorls"
 alias startdev="sh ~/scripts/start-dev-env.sh"
 alias stopdev="sh ~/scripts/stop-dev-env.sh"
 alias cat="batcat"
-alias bup="$ sudo apt update && sudo apt -y upgrade"
+alias bup="sh ~/scripts/update.sh"
 
 # eval "$(starship init zsh)"
+
+# Path to the docker servers: https://github.com/bbcCorp/servers
+export SERVER_HOME="~/progs/servers"
 
 export JAVA_HOME="/usr/lib/jvm/default-java"
 export SPARK_HOME="~/software/spark-3.3.1-bin-hadoop3"
@@ -125,6 +127,9 @@ export SPARK_HOME="~/software/spark-3.3.1-bin-hadoop3"
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:~/.local/share/flatpak/exports/bin
 export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/.local/share/omnisharp
+export PATH=$PATH:~/.local/share/netcoredbg
+export PATH=$PATH:~/.local/share/flutter/bin
 
 
 export NVM_DIR="$HOME/.nvm"
@@ -132,4 +137,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # tab completion for colorls
-source $(dirname $(gem which colorls))/tab_complete.sh
+#source $(dirname $(gem which colorls))/tab_complete.sh
